@@ -1,0 +1,7 @@
+bin/
+obj/
+/packages/
+/.idea/.idea.TestOTS/.idea
+*.iml
+/.vs/TestOTS/v16
+/TestOTS/LinqToDB.Templates

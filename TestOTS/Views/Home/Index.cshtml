@@ -1,0 +1,81 @@
+﻿@using Microsoft.Ajax.Utilities
+@using TestOTS.Models
+@model ViewDataModel
+
+@{
+    ViewBag.Title = @Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>@Model.Title</h2>
+
+<div class="container-fluid">
+    <div class="row">
+      @foreach (var zd in Model.data.GroupBy(d=>d.ZnDate).Select(result=> result.Key ))
+      {
+          <div class="col-md-1"><span class="bg-info"> @zd.ToLongDateString() </span></div>
+          <div class="col-md-11">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover table-responsive">
+                      <thead class="thead-light">
+                          <tr>
+                              <th rowspan="2" scope="col" style="width: 25%" align="center">Сотрудники</th>
+                              <th colspan="13" align="center">Рабочее время</th>
+                          </tr>
+                          <tr>
+                              @for (int c = 8; c < 21; c++)
+                              {
+                                  <th scope="col" style="width: 5%" align="center">@c - @(c + 1)</th>
+                              }
+
+                          </tr>
+                      </thead>
+                      <tbody>
+                          
+                          @foreach (var data in Model.data.Where(d => d.ZnDate == zd))
+                          {
+                          <tr>
+                              <th scope="row" style="width: 25%">@data.Fio</th>
+                              @{var i = 8;
+                                  int h = 1;}
+                              @while (i < 21)
+                              {
+                                  h = 1;
+                                  if (data.AllHours > 0)
+                                  {
+                                      if (data.Zn.Any(x => x.ZnFrom == i))
+                                      {
+                                          var zn = data.Zn.Find(x => x.ZnFrom == i);
+                                          if (zn.ZnFrom != null && zn.ZnAllHours != null && zn.ZnFrom == i)
+                                          {
+                                              <td style="width: 5%" colspan="@zn.ZnAllHours" align="center">@zn.ZnIdss.TrimEnd(',')</td>
+                                              h = (int)zn.ZnAllHours;
+                                          }
+                                      }
+                                      else
+                                      {
+                                          <td style="width: 5%" align="center"></td>
+                                      }
+
+                                  }
+                                  else
+                                  {
+                                      <td style="width: 5%" align="center"></td>
+                                  }
+
+                                  i += h;
+
+                                  if (i > 20) { break; }
+                              }
+                          </tr>
+                          }
+                          
+                      </tbody>
+                  </table>
+              </div>
+          </div>  
+      }
+        
+    </div>
+</div>
+
