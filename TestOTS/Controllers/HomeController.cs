@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using TestOTS.Models;
 
 namespace TestOTS.Controllers
@@ -12,14 +13,10 @@ namespace TestOTS.Controllers
   
     {
         IDataRepository _repository = new DataRepository(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-        
-        
-        public ActionResult Index(string in_date)
+
+        public ActionResult Index(string id = "20190712")
         {
-            if (string.IsNullOrEmpty(in_date))
-                return View(new ViewDataModel("Рабочий график сотрудников", _repository.GetDataFromDB("20190712")));
-            else
-                return View(new ViewDataModel("Рабочий график сотрудников", _repository.GetDataFromDB(in_date)));
+            return View(new ViewDataModel("Рабочий график сотрудников", _repository.GetDataFromDB(id)));
         }
 
     }

@@ -18,11 +18,11 @@
               <div class="table-responsive">
                   <table class="table table-bordered table-hover table-responsive">
                       <thead class="thead-light">
-                          <tr>
+                          <tr align="center">
                               <th rowspan="2" scope="col" style="width: 25%" align="center">Сотрудники</th>
                               <th colspan="13" align="center">Рабочее время</th>
                           </tr>
-                          <tr>
+                          <tr align="center">
                               @for (int c = 8; c < 21; c++)
                               {
                                   <th scope="col" style="width: 5%" align="center">@c - @(c + 1)</th>
@@ -48,7 +48,7 @@
                                           var zn = data.Zn.Find(x => x.ZnFrom == i);
                                           if (zn.ZnFrom != null && zn.ZnAllHours != null && zn.ZnFrom == i)
                                           {
-                                              <td style="width: 5%" colspan="@zn.ZnAllHours" align="center">@zn.ZnIdss.Trim().TrimEnd(',')</td>
+                                              <td class="alert-info" style="width: 5%" colspan="@zn.ZnAllHours" align="center">@zn.ZnIdss.Trim().TrimEnd(',')</td>
                                               h = (int)zn.ZnAllHours;
                                           }
                                       }
