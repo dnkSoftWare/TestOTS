@@ -48,7 +48,7 @@
                                           var zn = data.Zn.Find(x => x.ZnFrom == i);
                                           if (zn.ZnFrom != null && zn.ZnAllHours != null && zn.ZnFrom == i)
                                           {
-                                              <td style="width: 5%" colspan="@zn.ZnAllHours" align="center">@zn.ZnIdss.TrimEnd(',')</td>
+                                              <td style="width: 5%" colspan="@zn.ZnAllHours" align="center">@zn.ZnIdss.Trim().TrimEnd(',')</td>
                                               h = (int)zn.ZnAllHours;
                                           }
                                       }

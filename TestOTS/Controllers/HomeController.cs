@@ -22,16 +22,5 @@ namespace TestOTS.Controllers
                 return View(new ViewDataModel("Рабочий график сотрудников", _repository.GetDataFromDB(in_date)));
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
     }
 }
